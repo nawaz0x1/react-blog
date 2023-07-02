@@ -56,7 +56,7 @@ export const logout = () => {
   error && console.log(error);
 };
 
-export const googleSignIn = async () => {
+export const signInWithGoogle = async () => {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
@@ -65,6 +65,13 @@ export const googleSignIn = async () => {
         prompt: 'consent',
       },
     },
+  });
+  console.log(data, error);
+};
+
+export const signInWithGitHub = async () => {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'github',
   });
   console.log(data, error);
 };

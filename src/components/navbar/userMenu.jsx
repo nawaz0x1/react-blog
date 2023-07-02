@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../utils/utils';
 import { UserContext } from '../../contexts/userContext';
 
-const UserManu = () => {
+const UserManu = ({ setIsMenuClicked }) => {
   const navigate = useNavigate();
   const { setIsLoggedIn } = useContext(UserContext);
 
@@ -12,12 +12,22 @@ const UserManu = () => {
       <div>
         <ul>
           <Link to={'/profile'}>
-            <li className="hover:bg-slate-100 p-2">
+            <li
+              onClick={() => {
+                setIsMenuClicked(false);
+              }}
+              className="hover:bg-slate-100 p-2"
+            >
               <button>Profile</button>
             </li>
           </Link>
           <Link to={'/profile/posts'}>
-            <li className="hover:bg-slate-100 p-2">
+            <li
+              onClick={() => {
+                setIsMenuClicked(false);
+              }}
+              className="hover:bg-slate-100 p-2"
+            >
               <button>My Posts</button>
             </li>
           </Link>
@@ -25,6 +35,7 @@ const UserManu = () => {
             onClick={() => {
               logout();
               setIsLoggedIn(false);
+              setIsMenuClicked(false);
               navigate('/');
             }}
           >

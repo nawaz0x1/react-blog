@@ -33,7 +33,7 @@ const Register = () => {
   return (
     <div className="min-h-min mt-6 flex flex-col justify-center">
       <div className="p-0 mx-auto max-w-full md:w-full md:max-w-md">
-        <h1 className="font-bold text-center text-2xl mb-2">Login</h1>
+        <h1 className="font-bold text-center text-2xl mb-2">Register</h1>
         <div className="bg-white shadow w-full rounded-lg divide-y divide-gray-200 mx-auto">
           <div className="p-4">
             <form onSubmit={submitHandler}>

@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { login } from '../utils/utils';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../contexts/userContext';
-import { googleSignIn } from '../utils/utils';
+import { signInWithGoogle, signInWithGitHub } from '../utils/utils';
 const defaultForm = {
   email: '',
   password: '',
@@ -95,7 +95,7 @@ const Login = () => {
           <div className="p-5">
             <div className="grid grid-cols-3 gap-1">
               <button
-                onClick={googleSignIn}
+                onClick={signInWithGoogle}
                 type="button"
                 className="col-span-2 text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
               >
@@ -117,6 +117,7 @@ const Login = () => {
                 <span className="mx-auto">Sign in with Google</span>
               </button>
               <button
+                onClick={signInWithGitHub}
                 type="button"
                 className="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2"
               >

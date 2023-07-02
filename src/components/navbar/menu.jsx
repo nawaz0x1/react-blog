@@ -8,7 +8,7 @@ import UserManu from './userMenu';
 
 const AuthButtons = () => {
   const { isLoggedIn } = useContext(UserContext);
-  const [isMenuCicked, setIsManuClicked] = useState(false);
+  const [isMenuClicked, setIsMenuClicked] = useState(false);
 
   return (
     <>
@@ -16,10 +16,10 @@ const AuthButtons = () => {
         <div className="flex">
           <Write />
           <ProfilePicture
-            isMenuCicked={isMenuCicked}
-            setIsManuClicked={setIsManuClicked}
+            isMenuCicked={isMenuClicked}
+            setIsManuClicked={setIsMenuClicked}
           />
-          {isMenuCicked && <UserManu />}
+          {isMenuClicked && <UserManu setIsMenuClicked={setIsMenuClicked} />}
         </div>
       ) : (
         <>
