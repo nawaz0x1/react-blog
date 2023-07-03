@@ -92,3 +92,25 @@ const putNewUserInDB = async () => {
   }
   return;
 };
+
+export const blogPost = async (data) => {
+  const user = await supabase.auth.getUser();
+  data = { ...data, userId: user.data.user.id };
+  const { error } = await supabase.from('posts').insert(data);
+  if (error) console.log(error);
+};
+
+export const uploadThumbnail = async (picture) => {
+  const { data, error } = await supabase.storage
+    .from('thumbnails')
+    .upload('wete.jpg', picture, {
+      cacheControl: '3600',
+      upsert: false,
+    });
+  console.log(error ? error : data);
+};
+
+export const getPost = async () => {
+  const { data, error } = await supabase.from('posts').select();
+  return data;
+};
