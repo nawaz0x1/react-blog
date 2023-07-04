@@ -21,8 +21,8 @@ const Article = () => {
 
   if (!article.title)
     return (
-      <section className="flex items-center">
-        <h1 className="text-3xl"> Something went wrong</h1>
+      <section className="flex items-center mx-auto">
+        <h1 className="text-3xl"> Loading </h1>
       </section>
     );
 
