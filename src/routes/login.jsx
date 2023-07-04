@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { login } from '../utils/utils';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../contexts/userContext';
@@ -10,11 +10,17 @@ const defaultForm = {
 
 const Login = () => {
   const navigate = useNavigate();
-  const { setIsLoggedIn } = useContext(UserContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
   const [errorType, setErrorType] = useState(0);
 
   const [formData, setFormData] = useState(defaultForm);
   const { email, password } = formData;
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/');
+    }
+  }, [isLoggedIn, navigate]);
 
   const changeHandler = (e) => {
     const { id, value } = e.target;

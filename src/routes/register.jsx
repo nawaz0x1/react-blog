@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { signUpHandler } from '../utils/utils';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../contexts/userContext';
@@ -12,10 +12,16 @@ const defaultValue = {
 
 const Register = () => {
   const navigate = useNavigate();
-  const { setIsLoggedIn } = useContext(UserContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
 
   const [formValue, setFormValue] = useState(defaultValue);
   const { name, email, password, confirmPassword } = formValue;
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/');
+    }
+  }, [isLoggedIn, navigate]);
 
   const submitHandler = (e) => {
     e.preventDefault();

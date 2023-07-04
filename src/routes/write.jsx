@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../contexts/userContext';
 import { blogPost, uploadThumbnail } from '../utils/utils';
 
 const defaultData = {
@@ -9,8 +11,18 @@ const defaultData = {
 };
 
 const Write = () => {
+  const { isLoggedIn } = useContext(UserContext);
+  const navigate = useNavigate();
+
   const [data, setData] = useState(defaultData);
   const { title, description, thumbnail, post } = data;
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate('/login');
+    }
+  }, [isLoggedIn, navigate]);
+
   const changeHandler = (e) => {
     const { id, value } = e.target;
     setData({ ...data, [id]: value });
