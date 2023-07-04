@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../contexts/userContext';
-import { blogPost, uploadThumbnail } from '../utils/utils';
+import { blogPost } from '../utils/utils';
 
 const defaultData = {
   title: '',
@@ -26,11 +26,11 @@ const Write = () => {
   const changeHandler = (e) => {
     const { id, value } = e.target;
     setData({ ...data, [id]: value });
-    console.log(e);
   };
 
   const submitHandler = async () => {
-    blogPost(data);
+    await blogPost(data);
+    navigate('/');
   };
 
   return (
