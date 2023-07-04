@@ -13,7 +13,6 @@ export const signUpHandler = async (name, email, password) => {
     console.log(error);
     return error.message;
   }
-  console.log('user created');
   await putUserInDB(data.user.id, name, email);
   return 'success';
 };
@@ -107,10 +106,15 @@ export const uploadThumbnail = async (picture) => {
       cacheControl: '3600',
       upsert: false,
     });
-  console.log(error ? error : data);
 };
 
 export const getPost = async () => {
   const { data, error } = await supabase.from('posts').select();
   return data;
+};
+
+export const getPostByID = async (id) => {
+  const { data, error } = await supabase.from('posts').select().eq('id', id);
+
+  return { data, error };
 };
